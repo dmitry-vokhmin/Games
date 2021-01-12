@@ -5,14 +5,16 @@ from user_interface import UserInterface
 
 
 class Game:
+    __users = []
+
     def __init__(self):
         self.board = Board()
-        self.users = User("a1", "x"), User("a2", "o")
 
     def run_game(self):
         UserInterface.hello()
         standoff = len(self.board) ** 2
-        for user in cycle(self.users):
+        self.__users.extend((User.create_user("x"), User.create_user("o")))
+        for user in cycle(self.__users):
             standoff -= 1
             user_step = user.user_step(self.board)
             self.board.set_step(user_step, user)

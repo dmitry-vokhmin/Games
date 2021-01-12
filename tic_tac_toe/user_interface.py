@@ -1,7 +1,11 @@
 class UserInterface:
     @staticmethod
     def hello():
-        print("Добро пожаловать в игру крестики нолики")
+        print("Добро пожаловать в игру крестики нолики\n")
+
+    @staticmethod
+    def hello_user(name, symbol):
+        print(f"Игрок с именем: {name} и символом: {symbol} создан\n")
 
     @staticmethod
     def step(user):
@@ -9,7 +13,7 @@ class UserInterface:
         while True:
             coords = input("Введите координаты точки через пробел\n")
             try:
-                coords = [int(itm) for itm in coords.split(" ") if itm.isdigit()]
+                coords = [int(itm) - 1 for itm in coords.split(" ") if itm.isdigit()]
             except ValueError:
                 print("Что то введено не верно")
                 continue
@@ -20,9 +24,11 @@ class UserInterface:
 
     @staticmethod
     def board(board):
-        result = ""
+        result = "# 1 2 3\n"
+        line = 1
         for itm in board:
-            result += " ".join(map(str, itm)) + "\n"
+            result += f"{line} " + " ".join(map(str, itm)) + "\n"
+            line += 1
         print(result)
 
     @staticmethod

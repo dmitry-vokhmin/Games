@@ -13,4 +13,10 @@ class User:
             print("Ячейка занята, повторите ввод")
         return coords
 
+    @classmethod
+    def create_user(cls, symbol):
+        name = input(f"Введите свое имя с символом {symbol}\n")
+        UserInterface.hello_user(name, symbol)
+        return cls(name.title(), symbol)
+
 
