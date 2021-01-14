@@ -4,8 +4,30 @@ class UserInterface:
         print("Добро пожаловать в игру крестики нолики\n")
 
     @staticmethod
+    def game_mod():
+        while True:
+            try:
+                game_mod = int(input("Выберите режим игры\n"
+                                     "Введите 1 для игры с компьютером или 2 для игры с игроком\n"))
+            except ValueError:
+                print("Введенно не число, повторите ввод\n")
+                continue
+            if game_mod == 1 or game_mod == 2:
+                return game_mod
+            print("Вы ввели не правильную цифру\n")
+
+    @staticmethod
+    def create_user_name(symbol):
+        name = input(f"Введите свое имя с символом {symbol}\n")
+        return name
+
+    @staticmethod
     def hello_user(name, symbol):
         print(f"Игрок с именем: {name} и символом: {symbol} создан\n")
+
+    @staticmethod
+    def create_bot(name, symbol):
+        print(f"Компьютер с именем: {name} и символом: {symbol} создан\n")
 
     @staticmethod
     def step(user):
@@ -23,13 +45,8 @@ class UserInterface:
             return coords
 
     @staticmethod
-    def board(board):
-        result = "# 1 2 3\n"
-        line = 1
-        for itm in board:
-            result += f"{line} " + " ".join(map(str, itm)) + "\n"
-            line += 1
-        print(result)
+    def step_bot(coords):
+        print(f"Компьютер сходил на клетку {coords[0] + 1}, {coords[1] + 1}")
 
     @staticmethod
     def win_game(user):
